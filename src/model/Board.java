@@ -23,7 +23,7 @@ public class Board {
         if (spaces.stream().flatMap(Collection::stream).noneMatch(s -> !s.isFixed() && nonNull(s.getActual()))) {
             return NON_STARTED;
         }
-        return spaces.stream().flatMap(Collection::stream).anyMatch(s -> isNull(s.getActual())) ? IMPLEMENTE : COMPLETE;
+        return spaces.stream().flatMap(Collection::stream).anyMatch(s -> isNull(s.getActual())) ? INCOMPLETE : COMPLETE;
     }
 
     public boolean hasErrors() {
@@ -43,7 +43,7 @@ public class Board {
         space.setActual(value);
         return true;
     }
-    public boolean clampValue(final int row, final int col) {
+    public boolean clearValue(final int row, final int col) {
         var space = spaces.get(row).get(col);
         if (space.isFixed()) {
             return false;
